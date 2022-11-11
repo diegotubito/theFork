@@ -81,10 +81,13 @@ class RestaurantCell: UITableViewCell {
         addSeparator()
     }
     
-    func setupCell(name: String, image: String, address: String, rating: String) {
-        mainImageView.image = UIImage(named: image)
-        nameLabel.text = name + " ✭" + rating
-        adressLabel.text = address
+    func setupCell(restaurant: RestaurantModel) {
+        mainImageView.image = nil
+        if let imageData = restaurant.imageData {
+            mainImageView.image = UIImage(data: imageData)
+        }
+        nameLabel.text = restaurant.name + " ✭" + String(restaurant.aggregateRatings.thefork.ratingValue)
+        adressLabel.text = restaurant.address.street
     }
     
     required init?(coder: NSCoder) {

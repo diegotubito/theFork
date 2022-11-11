@@ -29,6 +29,11 @@ class HomeViewController: UIViewController {
             guard let self = self else { return }
             self.showErrorMessage(title: title, message: message)
         }
+        
+        viewModel?.onUpdatePhoto = { [weak self] indexPath in
+            guard let self = self else { return }
+            self.tableView.reloadRows(at: [indexPath], with: .fade)
+        }
     }
 
     private func setupTableView() {
@@ -50,19 +55,28 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.getModel().restaurants.count
+        return viewModel.model.restaurants.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? RestaurantCell else {
             return UITableViewCell()
         }
-        cell.setupCell(name: viewModel.getModel().restaurants[indexPath.row].name, image: "example", address: "Fallieres 661, Banfield", rating: "3.7")
+        let restaurant = viewModel.model.restaurants[indexPath.row]
+        
+        cell.setupCell(restaurant: restaurant)
+        
+        viewModel.loadImage(indexPath: indexPath)
+    
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+    }
+    
+    func startDownload(for photoRecord: RestaurantModel, at indexPath: IndexPath) {
+       
     }
 }
 

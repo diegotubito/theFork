@@ -5,7 +5,7 @@
 //  Created by David Gomez on 10/11/2022.
 //
 
-import Foundation
+import UIKit
 
 struct ResponseModel: Decodable {
     var data: [RestaurantModel]
@@ -17,6 +17,12 @@ struct RestaurantModel: Decodable {
     var address: Address
     var aggregateRatings: AgregateRating
     var mainPhoto: MainPhoto?
+    var imageState: ImageState?
+    var imageData: Data?
+    
+    enum ImageState: Decodable {
+        case new, downloaded, failed
+    }
     
     struct AgregateRating: Decodable {
         var thefork: RatingDetail

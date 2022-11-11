@@ -37,7 +37,11 @@ class ApiRequest {
             
             let status = response.statusCode
             guard (200...299).contains(status) else {
-                completion(.failure(.backendError(message: "some error ocurred")))
+                if status == 404 {
+                    completion(.failure(.notFound))
+                } else {
+                    completion(.failure(.backendError(message: "some error ocurred")))
+                }
                 return
             }
             
