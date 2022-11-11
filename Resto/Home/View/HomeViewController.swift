@@ -8,8 +8,22 @@
 import UIKit
 
 class HomeViewController: UIViewController {
-    @IBOutlet weak var tableView: UITableView!
+    lazy var tableView: UITableView = {
+        let tableview = UITableView()
+        tableview.delegate = self
+        tableview.dataSource = self
+        tableview.register(RestaurantCell.self, forCellReuseIdentifier: "cell")
+        tableview.rowHeight = UITableView.automaticDimension
+        tableview.estimatedRowHeight = 100
+        tableview.separatorStyle = .none
+        tableview.allowsSelection = false
+        return tableview
+    }()
     var viewModel: HomeViewModelProtocol!
+    
+    override func loadView() {
+        view = UIView()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,13 +51,17 @@ class HomeViewController: UIViewController {
     }
 
     private func setupTableView() {
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(RestaurantCell.self, forCellReuseIdentifier: "cell")
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 100
-        tableView.separatorStyle = .none
-        tableView.allowsSelection = false
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(tableView)
+        
+        let guide = view.layoutMarginsGuide
+        NSLayoutConstraint.activate([
+            
+            tableView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0),
+            tableView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0),
+            tableView.topAnchor.constraint(equalTo: guide.topAnchor, constant: 0),
+            tableView.bottomAnchor.constraint(equalTo: guide.bottomAnchor, constant: 0),
+        ])
     }
     
     private func showErrorMessage(title: String, message: String) {
