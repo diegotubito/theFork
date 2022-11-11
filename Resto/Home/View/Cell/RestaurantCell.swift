@@ -8,18 +8,8 @@
 import UIKit
 
 class RestaurantCell: UITableViewCell {
-    var buttonTapCallback: () -> () = { }
     
-    lazy var heartButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(named: "filled-heart"), for: .normal)
-        button.isUserInteractionEnabled = true
-        button.translatesAutoresizingMaskIntoConstraints = false
-        let tap = UITapGestureRecognizer(target: self, action: #selector(heartButtonHandler(_:)))
-        button.addGestureRecognizer(tap)
-        button.layer.zPosition = 100
-        return button
-    }()
+    
     lazy var containerView: UIView = {
         let view = UIView()
         view.backgroundColor = .lightGray.withAlphaComponent(0.3)
@@ -62,10 +52,20 @@ class RestaurantCell: UITableViewCell {
         imgView.layer.masksToBounds = true
         return imgView
     }()
+    
+    let heartButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .red
+        return button
+    }()
   
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupView()
+    }
+    
+    @objc func handler() {
+        print("handler")
     }
     
     private func setupView() {
@@ -87,6 +87,8 @@ class RestaurantCell: UITableViewCell {
             mainImageView.image = UIImage(data: imageData)
         }
         nameLabel.text = restaurant.name + " ✭" + String(restaurant.aggregateRatings.thefork.ratingValue)
+        let isFavourite = restaurant.isFavourite ?? false
+        heartButton.setImage(UIImage(named: isFavourite ? "filled-heart" : "empty-heart"), for: .normal)
         adressLabel.text = restaurant.address.street
     }
     
@@ -96,10 +98,6 @@ class RestaurantCell: UITableViewCell {
     
     static var identifier: String {
         return String(describing: self)
-    }
-    
-    @objc func heartButtonHandler(_ sender: UIButton) {
-        print("button tapped")
     }
 }
 
@@ -166,6 +164,8 @@ extension RestaurantCell {
             heartButton.bottomAnchor.constraint(equalTo: secondaryStackView.bottomAnchor, constant: 0),
             heartButton.widthAnchor.constraint(equalToConstant: 50)
         ])
+        
+        
     }
     
     private func addAddressLabel() {

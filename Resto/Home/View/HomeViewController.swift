@@ -41,7 +41,9 @@ class HomeViewController: UIViewController {
         tableView.dataSource = self
         tableView.register(RestaurantCell.self, forCellReuseIdentifier: "cell")
         tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 100
         tableView.separatorStyle = .none
+        tableView.allowsSelection = false
     }
     
     private func showErrorMessage(title: String, message: String) {
@@ -63,16 +65,15 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         let restaurant = viewModel.model.restaurants[indexPath.row]
-        
         cell.setupCell(restaurant: restaurant)
-        
         viewModel.loadImage(indexPath: indexPath)
-    
+       
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewModel.setFavourite(indexPath: indexPath)
     }
     
     func startDownload(for photoRecord: RestaurantModel, at indexPath: IndexPath) {

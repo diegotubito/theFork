@@ -19,6 +19,7 @@ struct RestaurantModel: Decodable {
     var mainPhoto: MainPhoto?
     var imageState: ImageState?
     var imageData: Data?
+    var isFavourite: Bool?
     
     enum ImageState: Decodable {
         case new, downloaded, failed

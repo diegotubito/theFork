@@ -9,6 +9,7 @@ import Foundation
 protocol HomeViewModelProtocol {
     func fetchRestaurants()
     func loadImage(indexPath: IndexPath)
+    func setFavourite(indexPath: IndexPath)
     var model: HomeModel { get set }
     
     var onSuccess: (() -> ())? { get set }
@@ -37,6 +38,7 @@ class HomeViewModel: HomeViewModelProtocol {
                     for (index, _) in self.model.restaurants.enumerated() {
                         self.model.restaurants[index].imageState = .new
                     }
+                    self.getIsFavourite()
                     self.onSuccess?()
                 }
             case .failure(let error):
@@ -74,6 +76,21 @@ class HomeViewModel: HomeViewModelProtocol {
             }
         case .downloaded, .failed, .none:
             break
+        }
+    }
+    
+    func setFavourite(indexPath: IndexPath) {
+        let uuid =  model.restaurants[indexPath.row].uuid
+        let currentValue = UserDefaults.standard.object(forKey: uuid) as? Bool ?? false
+        UserDefaults.standard.set(currentValue ? false : true, forKey: uuid)
+        model.restaurants[indexPath.row].isFavourite = currentValue ? false : true
+        self.onUpdatePhoto?(indexPath)
+    }
+    
+    private func getIsFavourite() {
+        for (index, restaurant) in model.restaurants.enumerated() {
+            let currentValue = UserDefaults.standard.object(forKey: restaurant.uuid) as? Bool
+            model.restaurants[index].isFavourite = currentValue
         }
     }
 }

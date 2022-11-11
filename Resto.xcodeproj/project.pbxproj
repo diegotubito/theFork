@@ -21,7 +21,19 @@
 		D6F4E2D9291DA488003460EA /* ApiRequestMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F4E2D8291DA488003460EA /* ApiRequestMock.swift */; };
 		D6F4E2DB291DA4A5003460EA /* ApiModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F4E2DA291DA4A5003460EA /* ApiModel.swift */; };
 		D6F4E2DD291DAA91003460EA /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F4E2DC291DAA91003460EA /* HomeModel.swift */; };
+		D6F4E2E8291DCDC7003460EA /* RestoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F4E2E7291DCDC7003460EA /* RestoUITests.swift */; };
+		D6F4E2F3291DCEDC003460EA /* RestaurantsMock.json in Resources */ = {isa = PBXBuildFile; fileRef = D6F4E2F2291DCEDC003460EA /* RestaurantsMock.json */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D6F4E2EB291DCDC7003460EA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D6617531291C6EF6008D9937 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D6617538291C6EF6008D9937;
+			remoteInfo = Resto;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		D6617539291C6EF6008D9937 /* Resto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Resto.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -40,10 +52,20 @@
 		D6F4E2D8291DA488003460EA /* ApiRequestMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiRequestMock.swift; sourceTree = "<group>"; };
 		D6F4E2DA291DA4A5003460EA /* ApiModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiModel.swift; sourceTree = "<group>"; };
 		D6F4E2DC291DAA91003460EA /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
+		D6F4E2E5291DCDC7003460EA /* RestoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RestoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6F4E2E7291DCDC7003460EA /* RestoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestoUITests.swift; sourceTree = "<group>"; };
+		D6F4E2F2291DCEDC003460EA /* RestaurantsMock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = RestaurantsMock.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		D6617536291C6EF6008D9937 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D6F4E2E2291DCDC7003460EA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -57,6 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				D661753B291C6EF6008D9937 /* Resto */,
+				D6F4E2E6291DCDC7003460EA /* RestoUITests */,
 				D661753A291C6EF6008D9937 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -65,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				D6617539291C6EF6008D9937 /* Resto.app */,
+				D6F4E2E5291DCDC7003460EA /* RestoUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -73,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				D661753C291C6EF6008D9937 /* AppDelegate.swift */,
+				D6F4E2F0291DCEC1003460EA /* Resources */,
 				D6F4E2CE291D7A7D003460EA /* Common */,
 				D6F4E2C5291D74E1003460EA /* Service */,
 				D6617550291C7133008D9937 /* Home */,
@@ -163,6 +188,30 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		D6F4E2E6291DCDC7003460EA /* RestoUITests */ = {
+			isa = PBXGroup;
+			children = (
+				D6F4E2E7291DCDC7003460EA /* RestoUITests.swift */,
+			);
+			path = RestoUITests;
+			sourceTree = "<group>";
+		};
+		D6F4E2F0291DCEC1003460EA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D6F4E2F1291DCEC4003460EA /* Mock */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		D6F4E2F1291DCEC4003460EA /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				D6F4E2F2291DCEDC003460EA /* RestaurantsMock.json */,
+			);
+			path = Mock;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -183,6 +232,24 @@
 			productReference = D6617539291C6EF6008D9937 /* Resto.app */;
 			productType = "com.apple.product-type.application";
 		};
+		D6F4E2E4291DCDC7003460EA /* RestoUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D6F4E2ED291DCDC7003460EA /* Build configuration list for PBXNativeTarget "RestoUITests" */;
+			buildPhases = (
+				D6F4E2E1291DCDC7003460EA /* Sources */,
+				D6F4E2E2291DCDC7003460EA /* Frameworks */,
+				D6F4E2E3291DCDC7003460EA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D6F4E2EC291DCDC7003460EA /* PBXTargetDependency */,
+			);
+			name = RestoUITests;
+			productName = RestoUITests;
+			productReference = D6F4E2E5291DCDC7003460EA /* RestoUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -195,6 +262,10 @@
 				TargetAttributes = {
 					D6617538291C6EF6008D9937 = {
 						CreatedOnToolsVersion = 14.0.1;
+					};
+					D6F4E2E4291DCDC7003460EA = {
+						CreatedOnToolsVersion = 14.0.1;
+						TestTargetID = D6617538291C6EF6008D9937;
 					};
 				};
 			};
@@ -212,6 +283,7 @@
 			projectRoot = "";
 			targets = (
 				D6617538291C6EF6008D9937 /* Resto */,
+				D6F4E2E4291DCDC7003460EA /* RestoUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -223,7 +295,15 @@
 			files = (
 				D6617549291C6EF8008D9937 /* LaunchScreen.storyboard in Resources */,
 				D6617546291C6EF8008D9937 /* Assets.xcassets in Resources */,
+				D6F4E2F3291DCEDC003460EA /* RestaurantsMock.json in Resources */,
 				D6617544291C6EF6008D9937 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D6F4E2E3291DCDC7003460EA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,7 +328,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D6F4E2E1291DCDC7003460EA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D6F4E2E8291DCDC7003460EA /* RestoUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D6F4E2EC291DCDC7003460EA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D6617538291C6EF6008D9937 /* Resto */;
+			targetProxy = D6F4E2EB291DCDC7003460EA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		D6617542291C6EF6008D9937 /* Main.storyboard */ = {
@@ -320,7 +416,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -374,7 +470,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -438,6 +534,40 @@
 			};
 			name = Release;
 		};
+		D6F4E2EE291DCDC7003460EA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ddg.RestoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Resto;
+			};
+			name = Debug;
+		};
+		D6F4E2EF291DCDC7003460EA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ddg.RestoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Resto;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -455,6 +585,15 @@
 			buildConfigurations = (
 				D661754E291C6EF8008D9937 /* Debug */,
 				D661754F291C6EF8008D9937 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D6F4E2ED291DCDC7003460EA /* Build configuration list for PBXNativeTarget "RestoUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D6F4E2EE291DCDC7003460EA /* Debug */,
+				D6F4E2EF291DCDC7003460EA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
