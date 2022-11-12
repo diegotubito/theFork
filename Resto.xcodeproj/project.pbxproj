@@ -22,6 +22,7 @@
 		D6F4E2DD291DAA91003460EA /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F4E2DC291DAA91003460EA /* HomeModel.swift */; };
 		D6F4E2E8291DCDC7003460EA /* RestoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F4E2E7291DCDC7003460EA /* RestoUITests.swift */; };
 		D6F4E2F3291DCEDC003460EA /* RestaurantsMock.json in Resources */ = {isa = PBXBuildFile; fileRef = D6F4E2F2291DCEDC003460EA /* RestaurantsMock.json */; };
+		D6F4E2F529205CC9003460EA /* SortingUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F4E2F429205CC9003460EA /* SortingUseCase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		D6F4E2E5291DCDC7003460EA /* RestoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RestoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6F4E2E7291DCDC7003460EA /* RestoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestoUITests.swift; sourceTree = "<group>"; };
 		D6F4E2F2291DCEDC003460EA /* RestaurantsMock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = RestaurantsMock.json; sourceTree = "<group>"; };
+		D6F4E2F429205CC9003460EA /* SortingUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingUseCase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				D6F4E2D3291DA242003460EA /* RestaurantUseCase.swift */,
+				D6F4E2F429205CC9003460EA /* SortingUseCase.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -320,6 +323,7 @@
 				D6F4E2C7291D74F5003460EA /* ApiRequest.swift in Sources */,
 				D6F4E2CA291D7795003460EA /* HomeViewModel.swift in Sources */,
 				D6F4E2D7291DA294003460EA /* RestaurantRepository.swift in Sources */,
+				D6F4E2F529205CC9003460EA /* SortingUseCase.swift in Sources */,
 				D661753D291C6EF6008D9937 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -7,8 +7,14 @@
 
 import UIKit
 
+protocol RestaurantCellDelegate: AnyObject {
+    func heartDidTapped(indexPath: IndexPath)
+}
+
 class RestaurantCell: UITableViewCell {
     
+    weak var delegate: RestaurantCellDelegate?
+    var indexPath: IndexPath?
     
     lazy var containerView: UIView = {
         let view = UIView()
@@ -53,19 +59,33 @@ class RestaurantCell: UITableViewCell {
         return imgView
     }()
     
-    let heartButton: UIButton = {
+    lazy var heartButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = .red
+        button.backgroundColor = .white
+        button.layer.cornerRadius = 10
         return button
     }()
   
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        selectionStyle = .none
         setupView()
     }
     
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func layoutSubviews() {
+        super .layoutSubviews()
+        heartButton.frame = CGRect(x: frame.width - 40, y: 0, width: 40, height: 40)
+        addSubview(heartButton)
+        heartButton.addTarget(self, action: #selector(handler), for: .touchUpInside)
+    }
+    
     @objc func handler() {
-        print("handler")
+        guard let indexPath = indexPath else { return }
+        delegate?.heartDidTapped(indexPath: indexPath)
     }
     
     private func setupView() {
@@ -81,7 +101,8 @@ class RestaurantCell: UITableViewCell {
         addSeparator()
     }
     
-    func setupCell(restaurant: RestaurantModel) {
+    func setupCell(restaurant: RestaurantModel, indexPath: IndexPath) {
+        self.indexPath = indexPath
         mainImageView.image = nil
         if let imageData = restaurant.imageData {
             mainImageView.image = UIImage(data: imageData)
@@ -92,13 +113,6 @@ class RestaurantCell: UITableViewCell {
         adressLabel.text = restaurant.address.street
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    static var identifier: String {
-        return String(describing: self)
-    }
 }
 
 // DRAW VIEW
@@ -110,6 +124,7 @@ extension RestaurantCell {
             containerView.rightAnchor.constraint(equalTo: rightAnchor, constant: 0),
             containerView.topAnchor.constraint(equalTo: topAnchor, constant: 0),
             containerView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
+          //  containerView.heightAnchor.constraint(equalToConstant: 250)
             
         ])
     }
@@ -156,15 +171,7 @@ extension RestaurantCell {
             nameLabel.topAnchor.constraint(equalTo: secondaryStackView.topAnchor, constant: 0),
             nameLabel.bottomAnchor.constraint(equalTo: secondaryStackView.bottomAnchor, constant: 0)
         ])
-        
-        secondaryStackView.addArrangedSubview(heartButton)
-        
-        NSLayoutConstraint.activate([
-            heartButton.topAnchor.constraint(equalTo: secondaryStackView.topAnchor, constant: 0),
-            heartButton.bottomAnchor.constraint(equalTo: secondaryStackView.bottomAnchor, constant: 0),
-            heartButton.widthAnchor.constraint(equalToConstant: 50)
-        ])
-        
+       
         
     }
     

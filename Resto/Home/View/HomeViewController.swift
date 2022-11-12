@@ -16,10 +16,20 @@ class HomeViewController: UIViewController {
         tableview.rowHeight = UITableView.automaticDimension
         tableview.estimatedRowHeight = 100
         tableview.separatorStyle = .none
-        tableview.allowsSelection = false
+      
         return tableview
     }()
-    var viewModel: HomeViewModelProtocol!
+    
+    var viewModel: HomeViewModelProtocol
+    
+    init(viewModel: HomeViewModelProtocol) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func loadView() {
         view = UIView()
@@ -27,26 +37,47 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel = HomeViewModel()
         setupTableView()
         setupWire()
-        viewModel?.fetchRestaurants()
+        viewModel.fetchRestaurants()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: #selector(sortButtonHandler))
+    }
+    
+    @objc func sortButtonHandler() {
+        presentModal()
+    }
+    
+    private func presentModal() {
+        let alert = UIAlertController(title: "Sort List", message: "Please Select a Sorting Option", preferredStyle: .actionSheet)
+        
+        alert.addAction(UIAlertAction(title: "By Name", style: .default , handler:{ (UIAlertAction)in
+            self.viewModel.sortByName()
+        }))
+        
+        alert.addAction(UIAlertAction(title: "By Rating", style: .default , handler:{ (UIAlertAction)in
+            self.viewModel.sortByRating()
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel))
+
+        self.present(alert, animated: true)
     }
     
     private func setupWire() {
-        viewModel?.onSuccess = { [weak self] in
-            guard let self = self else { return }
-            self.tableView.reloadData()
-        }
-
-        viewModel?.onError = { [weak self] (title, message) in
+        viewModel.onError = { [weak self] (title, message) in
             guard let self = self else { return }
             self.showErrorMessage(title: title, message: message)
         }
         
-        viewModel?.onUpdatePhoto = { [weak self] indexPath in
+        viewModel.onUpdatePhoto = { [weak self] indexPath in
             guard let self = self else { return }
-            self.tableView.reloadRows(at: [indexPath], with: .fade)
+            self.tableView.reloadRows(at: [indexPath], with: .none)
+        }
+        
+        viewModel.onUpdateTableViewList = { [weak self] in
+            guard let self = self else { return }
+            
+            self.tableView.reloadData()
         }
     }
 
@@ -83,7 +114,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         let restaurant = viewModel.model.restaurants[indexPath.row]
-        cell.setupCell(restaurant: restaurant)
+        cell.setupCell(restaurant: restaurant, indexPath: indexPath)
+        cell.delegate = self
         viewModel.loadImage(indexPath: indexPath)
        
         return cell
@@ -91,7 +123,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
         
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        viewModel.setFavourite(indexPath: indexPath)
+        
     }
     
     func startDownload(for photoRecord: RestaurantModel, at indexPath: IndexPath) {
@@ -99,3 +131,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+extension HomeViewController: RestaurantCellDelegate {
+    func heartDidTapped(indexPath: IndexPath) {
+        viewModel.setFavourite(indexPath: indexPath)
+    }
+}

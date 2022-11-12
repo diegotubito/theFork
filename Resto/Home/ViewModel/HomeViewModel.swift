@@ -7,21 +7,23 @@
 
 import Foundation
 protocol HomeViewModelProtocol {
+    func sortByName()
+    func sortByRating()
     func fetchRestaurants()
     func loadImage(indexPath: IndexPath)
     func setFavourite(indexPath: IndexPath)
     var model: HomeModel { get set }
     
-    var onSuccess: (() -> ())? { get set }
     var onError: ((String, String) -> ())? { get set }
     var onUpdatePhoto: ((IndexPath) -> Void)? { get set }
+    var onUpdateTableViewList: (() -> Void)? { get set }
 }
 
 class HomeViewModel: HomeViewModelProtocol {
     var model: HomeModel
-    var onSuccess: (() -> ())?
-    var onError: ((String, String) -> ())?
+    var onError: ((String, String) -> Void)?
     var onUpdatePhoto: ((IndexPath) -> Void)?
+    var onUpdateTableViewList: (() -> Void)?
     var restauranUseCase: RestaurantUseCaseProtocol
     
     init(repository: ApiRequest = ApiRequest() ) {
@@ -39,7 +41,8 @@ class HomeViewModel: HomeViewModelProtocol {
                         self.model.restaurants[index].imageState = .new
                     }
                     self.getIsFavourite()
-                    self.onSuccess?()
+                    self.sortByName()
+                    self.onUpdateTableViewList?()
                 }
             case .failure(let error):
                 DispatchQueue.main.async {
@@ -92,5 +95,17 @@ class HomeViewModel: HomeViewModelProtocol {
             let currentValue = UserDefaults.standard.object(forKey: restaurant.uuid) as? Bool
             model.restaurants[index].isFavourite = currentValue
         }
+    }
+    
+    func sortByName() {
+        let sortedRestaurants = model.restaurants.sorted(by: { $0.name < $1.name })
+        model.restaurants = sortedRestaurants
+        onUpdateTableViewList?()
+    }
+    
+    func sortByRating() {
+        let sortedRestaurants = model.restaurants.sorted(by: { $0.aggregateRatings.thefork.ratingValue > $1.aggregateRatings.thefork.ratingValue })
+        model.restaurants = sortedRestaurants
+        onUpdateTableViewList?()
     }
 }
