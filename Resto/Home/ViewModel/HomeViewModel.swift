@@ -25,9 +25,11 @@ class HomeViewModel: HomeViewModelProtocol {
     var onUpdatePhoto: ((IndexPath) -> Void)?
     var onUpdateTableViewList: (() -> Void)?
     var restauranUseCase: RestaurantUseCaseProtocol
+    var sortUseCase: SortUseCaseProtocol
     
     init(repository: ApiRequest = ApiRequest() ) {
         self.restauranUseCase = RestaurantUseCase()
+        self.sortUseCase = SortUseCase()
         self.model = HomeModel(restaurants: [])
     }
     
@@ -98,14 +100,12 @@ class HomeViewModel: HomeViewModelProtocol {
     }
     
     func sortByName() {
-        let sortedRestaurants = model.restaurants.sorted(by: { $0.name < $1.name })
-        model.restaurants = sortedRestaurants
+        model.restaurants = sortUseCase.sortByName(input: model.restaurants)
         onUpdateTableViewList?()
     }
     
     func sortByRating() {
-        let sortedRestaurants = model.restaurants.sorted(by: { $0.aggregateRatings.thefork.ratingValue > $1.aggregateRatings.thefork.ratingValue })
-        model.restaurants = sortedRestaurants
+        model.restaurants = sortUseCase.sortByRating(input: model.restaurants)
         onUpdateTableViewList?()
     }
 }

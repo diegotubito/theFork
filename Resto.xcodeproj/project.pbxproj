@@ -23,10 +23,19 @@
 		D6F4E2E8291DCDC7003460EA /* RestoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F4E2E7291DCDC7003460EA /* RestoUITests.swift */; };
 		D6F4E2F3291DCEDC003460EA /* RestaurantsMock.json in Resources */ = {isa = PBXBuildFile; fileRef = D6F4E2F2291DCEDC003460EA /* RestaurantsMock.json */; };
 		D6F4E2F529205CC9003460EA /* SortingUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F4E2F429205CC9003460EA /* SortingUseCase.swift */; };
+		D6F4E2FD29206128003460EA /* SortUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F4E2FC29206128003460EA /* SortUseCaseTests.swift */; };
+		D6F4E30529206555003460EA /* RestoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F4E30429206555003460EA /* RestoTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		D6F4E2EB291DCDC7003460EA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D6617531291C6EF6008D9937 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D6617538291C6EF6008D9937;
+			remoteInfo = Resto;
+		};
+		D6F4E2FE29206128003460EA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D6617531291C6EF6008D9937 /* Project object */;
 			proxyType = 1;
@@ -55,6 +64,9 @@
 		D6F4E2E7291DCDC7003460EA /* RestoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestoUITests.swift; sourceTree = "<group>"; };
 		D6F4E2F2291DCEDC003460EA /* RestaurantsMock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = RestaurantsMock.json; sourceTree = "<group>"; };
 		D6F4E2F429205CC9003460EA /* SortingUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingUseCase.swift; sourceTree = "<group>"; };
+		D6F4E2FA29206128003460EA /* RestoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RestoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6F4E2FC29206128003460EA /* SortUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortUseCaseTests.swift; sourceTree = "<group>"; };
+		D6F4E30429206555003460EA /* RestoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestoTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +84,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D6F4E2F729206128003460EA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -80,6 +99,7 @@
 			children = (
 				D661753B291C6EF6008D9937 /* Resto */,
 				D6F4E2E6291DCDC7003460EA /* RestoUITests */,
+				D6F4E2FB29206128003460EA /* RestoTests */,
 				D661753A291C6EF6008D9937 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -89,6 +109,7 @@
 			children = (
 				D6617539291C6EF6008D9937 /* Resto.app */,
 				D6F4E2E5291DCDC7003460EA /* RestoUITests.xctest */,
+				D6F4E2FA29206128003460EA /* RestoTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -212,6 +233,23 @@
 			path = Mock;
 			sourceTree = "<group>";
 		};
+		D6F4E2FB29206128003460EA /* RestoTests */ = {
+			isa = PBXGroup;
+			children = (
+				D6F4E30429206555003460EA /* RestoTests.swift */,
+				D6F4E30329206538003460EA /* SortUseCase */,
+			);
+			path = RestoTests;
+			sourceTree = "<group>";
+		};
+		D6F4E30329206538003460EA /* SortUseCase */ = {
+			isa = PBXGroup;
+			children = (
+				D6F4E2FC29206128003460EA /* SortUseCaseTests.swift */,
+			);
+			path = SortUseCase;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -250,6 +288,24 @@
 			productReference = D6F4E2E5291DCDC7003460EA /* RestoUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		D6F4E2F929206128003460EA /* RestoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D6F4E30029206128003460EA /* Build configuration list for PBXNativeTarget "RestoTests" */;
+			buildPhases = (
+				D6F4E2F629206128003460EA /* Sources */,
+				D6F4E2F729206128003460EA /* Frameworks */,
+				D6F4E2F829206128003460EA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D6F4E2FF29206128003460EA /* PBXTargetDependency */,
+			);
+			name = RestoTests;
+			productName = RestoTests;
+			productReference = D6F4E2FA29206128003460EA /* RestoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -264,6 +320,10 @@
 						CreatedOnToolsVersion = 14.0.1;
 					};
 					D6F4E2E4291DCDC7003460EA = {
+						CreatedOnToolsVersion = 14.0.1;
+						TestTargetID = D6617538291C6EF6008D9937;
+					};
+					D6F4E2F929206128003460EA = {
 						CreatedOnToolsVersion = 14.0.1;
 						TestTargetID = D6617538291C6EF6008D9937;
 					};
@@ -284,6 +344,7 @@
 			targets = (
 				D6617538291C6EF6008D9937 /* Resto */,
 				D6F4E2E4291DCDC7003460EA /* RestoUITests */,
+				D6F4E2F929206128003460EA /* RestoTests */,
 			);
 		};
 /* End PBXProject section */
@@ -300,6 +361,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		D6F4E2E3291DCDC7003460EA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D6F4E2F829206128003460EA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -336,6 +404,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D6F4E2F629206128003460EA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D6F4E2FD29206128003460EA /* SortUseCaseTests.swift in Sources */,
+				D6F4E30529206555003460EA /* RestoTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -343,6 +420,11 @@
 			isa = PBXTargetDependency;
 			target = D6617538291C6EF6008D9937 /* Resto */;
 			targetProxy = D6F4E2EB291DCDC7003460EA /* PBXContainerItemProxy */;
+		};
+		D6F4E2FF29206128003460EA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D6617538291C6EF6008D9937 /* Resto */;
+			targetProxy = D6F4E2FE29206128003460EA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -558,6 +640,42 @@
 			};
 			name = Release;
 		};
+		D6F4E30129206128003460EA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ddg.RestoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Resto.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Resto";
+			};
+			name = Debug;
+		};
+		D6F4E30229206128003460EA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ddg.RestoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Resto.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Resto";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -584,6 +702,15 @@
 			buildConfigurations = (
 				D6F4E2EE291DCDC7003460EA /* Debug */,
 				D6F4E2EF291DCDC7003460EA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D6F4E30029206128003460EA /* Build configuration list for PBXNativeTarget "RestoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D6F4E30129206128003460EA /* Debug */,
+				D6F4E30229206128003460EA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
