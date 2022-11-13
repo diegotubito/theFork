@@ -118,7 +118,7 @@ class RestaurantCell: UITableViewCell {
             mainImageView.image = UIImage(data: imageData)
         }
         nameLabel.text = restaurant.name
-        ratingLabel.text = "Rate ✭ " + String(restaurant.aggregateRatings.thefork.ratingValue)
+        ratingLabel.text = "RATE".localized + " ✭ " + String(restaurant.aggregateRatings.thefork.ratingValue)
         let isFavourite = restaurant.isFavourite ?? false
         heartButton.setImage(UIImage(named: isFavourite ? "filled-heart" : "empty-heart"), for: .normal)
         adressLabel.text = restaurant.address.street

@@ -1,0 +1,19 @@
+/* 
+  Localizable.strings
+  Resto
+
+  Created by David Gomez on 12/11/2022.
+  
+*/
+
+"RATE" = "Rate";
+"OK_OPTION" = "Ok.";
+"DISMISS_OPTION" = "Dismiss";
+"ERROR_TITLE" = "Error";
+
+// Sorting option
+"SORT_OPTION_TITLE" = "Sort List";
+"SORT_OPTION_SUBTITLE" = "Please Select a Sorting Option";
+"SORT_OPTION_NAME" = "By Name";
+"SORT_OPTION_RATE" = "By Rating";
+

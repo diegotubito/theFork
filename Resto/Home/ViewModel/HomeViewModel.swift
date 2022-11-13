@@ -50,7 +50,7 @@ class HomeViewModel: HomeViewModelProtocol {
             case .failure(let error):
                 DispatchQueue.main.async {
                     self.model.restaurants = []
-                    self.onError?("Error", error.message)
+                    self.onError?("ERROR_TITLE".localized, error.message)
                 }
             }
         }

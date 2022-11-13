@@ -28,24 +28,24 @@ extension HomeViewController {
     
     func showErrorMessage(title: String, message: String) {
         let dialogMessage = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+        let ok = UIAlertAction(title: "OK_OPTION".localized, style: .default, handler: { (action) -> Void in
         })
         dialogMessage.addAction(ok)
         self.present(dialogMessage, animated: true, completion: nil)
     }
     
     func presentModal() {
-        let alert = UIAlertController(title: "Sort List", message: "Please Select a Sorting Option", preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: "SORT_OPTION_TITLE".localized, message: "SORT_OPTION_SUBTITLE".localized, preferredStyle: .actionSheet)
         
-        alert.addAction(UIAlertAction(title: "By Name", style: .default , handler:{ (UIAlertAction)in
+        alert.addAction(UIAlertAction(title: "SORT_OPTION_NAME".localized, style: .default , handler:{ (UIAlertAction)in
             self.viewModel.sortByName()
         }))
         
-        alert.addAction(UIAlertAction(title: "By Rating", style: .default , handler:{ (UIAlertAction)in
+        alert.addAction(UIAlertAction(title: "SORT_OPTION_RATE".localized, style: .default , handler:{ (UIAlertAction)in
             self.viewModel.sortByRating()
         }))
         
-        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel))
+        alert.addAction(UIAlertAction(title: "DISMISS_OPTION".localized, style: .cancel))
         
         self.present(alert, animated: true)
     }
