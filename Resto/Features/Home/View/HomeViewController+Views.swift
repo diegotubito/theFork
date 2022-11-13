@@ -15,19 +15,29 @@ extension HomeViewController {
                                                             action: #selector(sortButtonHandler))
     }
     
-    func setupTableView() {
-        tableView.translatesAutoresizingMaskIntoConstraints = false
+    func drawTitle() {
+        view.addSubview(titleLabel)
+        
+        let guide = view.layoutMarginsGuide
+        NSLayoutConstraint.activate([
+            titleLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
+            titleLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
+            titleLabel.topAnchor.constraint(equalTo: guide.topAnchor),
+        ])
+    }
+
+    func drawTableView() {
         view.addSubview(tableView)
         
         let guide = view.layoutMarginsGuide
         NSLayoutConstraint.activate([
-            
             tableView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0),
             tableView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0),
-            tableView.topAnchor.constraint(equalTo: guide.topAnchor, constant: 0),
+            tableView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
             tableView.bottomAnchor.constraint(equalTo: guide.bottomAnchor, constant: 0),
         ])
     }
+    
     
     func showErrorMessage(title: String, message: String) {
         let dialogMessage = UIAlertController(title: title, message: message, preferredStyle: .alert)

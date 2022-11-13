@@ -18,7 +18,7 @@ class RestaurantCell: UITableViewCell {
     
     lazy var containerView: UIView = {
         let view = UIView()
-        view.backgroundColor = .lightGray.withAlphaComponent(0.3)
+        view.backgroundColor = .black
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()

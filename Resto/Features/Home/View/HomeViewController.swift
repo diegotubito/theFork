@@ -8,6 +8,16 @@
 import UIKit
 
 class HomeViewController: UIViewController {
+    lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.numberOfLines = 2
+        label.text = "RESTAURANT_TITLE".localized
+        label.font = UIFont.boldSystemFont(ofSize: 33)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     lazy var tableView: UITableView = {
         let tableview = UITableView()
         tableview.delegate = self
@@ -16,7 +26,8 @@ class HomeViewController: UIViewController {
         tableview.rowHeight = UITableView.automaticDimension
         tableview.separatorStyle = .none
         tableview.accessibilityIdentifier = "TableViewIdentifier"
-      
+        tableview.backgroundColor = .black
+        tableview.translatesAutoresizingMaskIntoConstraints = false
         return tableview
     }()
     
@@ -37,7 +48,8 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupTableView()
+        drawTitle()
+        drawTableView()
         setupWire()
         viewModel.fetchRestaurants()
         setupNavigationButton()

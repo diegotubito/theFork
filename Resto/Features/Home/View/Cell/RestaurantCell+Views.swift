@@ -29,9 +29,8 @@ extension RestaurantCell {
     }
     
     func addImageView() {
-        let widthProportional: CGFloat = 0.8
-        let aspectRatio: CGFloat = 0.56
-        let imageWidth: CGFloat = (UIScreen.main.bounds.size.width * widthProportional)
+        let aspectRatio: CGFloat = 0.50
+        let imageWidth: CGFloat = UIScreen.main.bounds.size.width
         let imageHeight: CGFloat = imageWidth * aspectRatio
         stackView.addArrangedSubview(mainImageView)
         NSLayoutConstraint.activate([
