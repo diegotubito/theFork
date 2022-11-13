@@ -17,3 +17,7 @@
 "SORT_OPTION_NAME" = "By Name";
 "SORT_OPTION_RATE" = "By Rating";
 
+// File Names
+"SORT_IMAGE_NAME" = "sort";
+"FILLED_HEART_IMAGE_NAME" = "filled-heart";
+"EMPTY_HEART_IMAGE_NAME" = "empty-heart";

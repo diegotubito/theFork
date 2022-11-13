@@ -12,9 +12,8 @@ class HomeViewController: UIViewController {
         let tableview = UITableView()
         tableview.delegate = self
         tableview.dataSource = self
-        tableview.register(RestaurantCell.self, forCellReuseIdentifier: "cell")
+        tableview.register(RestaurantCell.self, forCellReuseIdentifier: "RestaurantCell")
         tableview.rowHeight = UITableView.automaticDimension
-        tableview.estimatedRowHeight = 100
         tableview.separatorStyle = .none
         tableview.accessibilityIdentifier = "TableViewIdentifier"
       

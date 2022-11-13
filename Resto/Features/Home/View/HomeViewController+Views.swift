@@ -9,7 +9,10 @@ import UIKit
 
 extension HomeViewController {
     func setupNavigationButton() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .bookmarks, target: self, action: #selector(sortButtonHandler))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "SORT_IMAGE_NAME".localized),
+                                                            landscapeImagePhone: nil,
+                                                            style: .plain, target: self,
+                                                            action: #selector(sortButtonHandler))
     }
     
     func setupTableView() {

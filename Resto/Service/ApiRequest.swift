@@ -2,7 +2,6 @@
 import UIKit
 
 class ApiRequest {
-    // Generic Wrapper
     func apiCall<T: Decodable>(completion: @escaping (Result<T, ApiRequestError>) -> Void) {
         fetchRequest { result in
             switch result {
@@ -40,7 +39,7 @@ class ApiRequest {
                 if status == 404 {
                     completion(.failure(.notFound))
                 } else {
-                    completion(.failure(.backendError(message: "some error ocurred")))
+                    completion(.failure(.backendError(message: "Some error ocurred")))
                 }
                 return
             }
