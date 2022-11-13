@@ -6,6 +6,7 @@
 //
 
 import Foundation
+
 protocol HomeViewModelProtocol {
     func sortByName()
     func sortByRating()
@@ -20,9 +21,13 @@ protocol HomeViewModelProtocol {
 
 class HomeViewModel: HomeViewModelProtocol {
     var model: HomeModel
+    
+    // MARK: Bindings
     var onError: ((String, String) -> Void)?
     var onUpdatePhoto: ((IndexPath) -> Void)?
     var onUpdateTableViewList: (() -> Void)?
+   
+    // MARK: Use Cases
     var restauranUseCase: RestaurantUseCaseProtocol
     var sortUseCase: SortUseCaseProtocol
     var imageUseCase: ImageUseCaseProtocol
