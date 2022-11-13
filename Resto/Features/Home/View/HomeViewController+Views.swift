@@ -20,8 +20,8 @@ extension HomeViewController {
         
         let guide = view.layoutMarginsGuide
         NSLayoutConstraint.activate([
-            titleLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
-            titleLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
+            titleLabel.leftAnchor.constraint(equalTo: guide.leftAnchor),
+            titleLabel.rightAnchor.constraint(equalTo: guide.rightAnchor),
             titleLabel.topAnchor.constraint(equalTo: guide.topAnchor),
         ])
     }
@@ -31,10 +31,10 @@ extension HomeViewController {
         
         let guide = view.layoutMarginsGuide
         NSLayoutConstraint.activate([
-            tableView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0),
-            tableView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0),
+            tableView.leftAnchor.constraint(equalTo: guide.leftAnchor),
+            tableView.rightAnchor.constraint(equalTo: guide.rightAnchor),
             tableView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
-            tableView.bottomAnchor.constraint(equalTo: guide.bottomAnchor, constant: 0),
+            tableView.bottomAnchor.constraint(equalTo: guide.bottomAnchor),
         ])
     }
     

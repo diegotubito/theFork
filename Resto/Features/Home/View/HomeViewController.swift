@@ -20,9 +20,8 @@ class HomeViewController: UIViewController {
     
     lazy var tableView: UITableView = {
         let tableview = UITableView()
-        tableview.delegate = self
         tableview.dataSource = self
-        tableview.register(RestaurantCell.self, forCellReuseIdentifier: "RestaurantCell")
+        tableview.register(RestaurantCell.self, forCellReuseIdentifier: RestaurantCell.identifier)
         tableview.rowHeight = UITableView.automaticDimension
         tableview.separatorStyle = .none
         tableview.accessibilityIdentifier = "TableViewIdentifier"
@@ -53,6 +52,10 @@ class HomeViewController: UIViewController {
         setupWire()
         viewModel.fetchRestaurants()
         setupNavigationButton()
+    }
+    
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+        tableView.reloadData()
     }
     
     private func setupWire() {

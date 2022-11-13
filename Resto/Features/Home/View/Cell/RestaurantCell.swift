@@ -16,6 +16,13 @@ class RestaurantCell: UITableViewCell {
     weak var delegate: RestaurantCellDelegate?
     var indexPath: IndexPath?
     
+    static var identifier: String {
+        return String(describing: self)
+    }
+    
+    var portraitHeightConstraint: NSLayoutConstraint?
+    var landscapeHeightConstraint: NSLayoutConstraint?
+
     lazy var containerView: UIView = {
         let view = UIView()
         view.backgroundColor = .black
@@ -27,16 +34,23 @@ class RestaurantCell: UITableViewCell {
        let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.distribution = .fill
-        stackView.spacing = 8
+        stackView.spacing = Constants.stackSpacing
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
+    }()
+    
+    lazy var separatorView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .lightGray
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
     
     lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.numberOfLines = 2
-        label.font = UIFont.boldSystemFont(ofSize: 15)
+        label.numberOfLines = Constants.maximumNumberOfLines
+        label.font = UIFont.boldSystemFont(ofSize: Constants.titleSize)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -44,7 +58,7 @@ class RestaurantCell: UITableViewCell {
     lazy var adressLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = UIFont.systemFont(ofSize: 12)
+        label.font = UIFont.systemFont(ofSize: Constants.subTitleSize)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -52,7 +66,7 @@ class RestaurantCell: UITableViewCell {
     lazy var ratingLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = UIFont.systemFont(ofSize: 12)
+        label.font = UIFont.systemFont(ofSize: Constants.subTitleSize)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -62,8 +76,8 @@ class RestaurantCell: UITableViewCell {
         imgView.contentMode = .scaleToFill
         imgView.translatesAutoresizingMaskIntoConstraints = false
         imgView.layer.borderColor = UIColor.white.cgColor
-        imgView.layer.borderWidth = 1
-        imgView.layer.cornerRadius = 10
+        imgView.layer.borderWidth = Constants.borderWidth
+        imgView.layer.cornerRadius = Constants.cornerRadius
         imgView.layer.masksToBounds = true
         return imgView
     }()
@@ -71,7 +85,7 @@ class RestaurantCell: UITableViewCell {
     lazy var heartButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .white
-        button.layer.cornerRadius = 10
+        button.layer.cornerRadius = Constants.cornerRadius
         return button
     }()
   
@@ -87,7 +101,10 @@ class RestaurantCell: UITableViewCell {
     
     override func layoutSubviews() {
         super .layoutSubviews()
-        heartButton.frame = CGRect(x: frame.width - 40, y: 0, width: 40, height: 40)
+        heartButton.frame = CGRect(x: frame.width - Constants.frameSide,
+                                   y: 0,
+                                   width: Constants.frameSide,
+                                   height: Constants.frameSide)
         addSubview(heartButton)
         heartButton.addTarget(self, action: #selector(handler), for: .touchUpInside)
     }
@@ -108,21 +125,22 @@ class RestaurantCell: UITableViewCell {
         addNameLabel()
         addRatingLabel()
         addAddressLabel()
-        addSeparator()
     }
     
     func setupCell(restaurant: RestaurantModel, indexPath: IndexPath) {
         self.indexPath = indexPath
-        mainImageView.image = nil
-        if let imageData = restaurant.imageData {
-            mainImageView.image = UIImage(data: imageData)
-        }
+        mainImageView.image = UIImage(data: restaurant.imageData ?? Data())
         nameLabel.text = restaurant.name
         ratingLabel.text = "RATE".localized + " ✭ " + String(restaurant.aggregateRatings.thefork.ratingValue)
         let isFavourite = restaurant.isFavourite ?? false
         heartButton.setImage(UIImage(named: isFavourite ? "FILLED_HEART_IMAGE_NAME".localized : "EMPTY_HEART_IMAGE_NAME".localized), for: .normal)
         adressLabel.text = restaurant.address.street
+        updateHeightConstraints()
     }
     
+    private func updateHeightConstraints() {
+        portraitHeightConstraint?.isActive = UIDevice.current.orientation.isPortrait
+        landscapeHeightConstraint?.isActive = !UIDevice.current.orientation.isPortrait
+    }
 }
 
