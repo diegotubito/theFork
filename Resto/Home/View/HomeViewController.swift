@@ -16,6 +16,7 @@ class HomeViewController: UIViewController {
         tableview.rowHeight = UITableView.automaticDimension
         tableview.estimatedRowHeight = 100
         tableview.separatorStyle = .none
+        tableview.accessibilityIdentifier = "TableViewIdentifier"
       
         return tableview
     }()
@@ -40,27 +41,7 @@ class HomeViewController: UIViewController {
         setupTableView()
         setupWire()
         viewModel.fetchRestaurants()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: #selector(sortButtonHandler))
-    }
-    
-    @objc func sortButtonHandler() {
-        presentModal()
-    }
-    
-    private func presentModal() {
-        let alert = UIAlertController(title: "Sort List", message: "Please Select a Sorting Option", preferredStyle: .actionSheet)
-        
-        alert.addAction(UIAlertAction(title: "By Name", style: .default , handler:{ (UIAlertAction)in
-            self.viewModel.sortByName()
-        }))
-        
-        alert.addAction(UIAlertAction(title: "By Rating", style: .default , handler:{ (UIAlertAction)in
-            self.viewModel.sortByRating()
-        }))
-        
-        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel))
-
-        self.present(alert, animated: true)
+        setupNavigationButton()
     }
     
     private func setupWire() {
@@ -80,54 +61,9 @@ class HomeViewController: UIViewController {
             self.tableView.reloadData()
         }
     }
-
-    private func setupTableView() {
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(tableView)
-        
-        let guide = view.layoutMarginsGuide
-        NSLayoutConstraint.activate([
-            
-            tableView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0),
-            tableView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0),
-            tableView.topAnchor.constraint(equalTo: guide.topAnchor, constant: 0),
-            tableView.bottomAnchor.constraint(equalTo: guide.bottomAnchor, constant: 0),
-        ])
-    }
     
-    private func showErrorMessage(title: String, message: String) {
-        let dialogMessage = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
-        })
-        dialogMessage.addAction(ok)
-        self.present(dialogMessage, animated: true, completion: nil)
-    }
-}
-
-extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.model.restaurants.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? RestaurantCell else {
-            return UITableViewCell()
-        }
-        let restaurant = viewModel.model.restaurants[indexPath.row]
-        cell.setupCell(restaurant: restaurant, indexPath: indexPath)
-        cell.delegate = self
-        viewModel.loadImage(indexPath: indexPath)
-       
-        return cell
-    }
-    
-        
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-    }
-    
-    func startDownload(for photoRecord: RestaurantModel, at indexPath: IndexPath) {
-       
+    @objc func sortButtonHandler() {
+        presentModal()
     }
 }
 

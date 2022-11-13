@@ -13,7 +13,6 @@ protocol HomeViewModelProtocol {
     func loadImage(indexPath: IndexPath)
     func setFavourite(indexPath: IndexPath)
     var model: HomeModel { get set }
-    
     var onError: ((String, String) -> ())? { get set }
     var onUpdatePhoto: ((IndexPath) -> Void)? { get set }
     var onUpdateTableViewList: (() -> Void)? { get set }
@@ -26,10 +25,12 @@ class HomeViewModel: HomeViewModelProtocol {
     var onUpdateTableViewList: (() -> Void)?
     var restauranUseCase: RestaurantUseCaseProtocol
     var sortUseCase: SortUseCaseProtocol
+    var imageUseCase: ImageUseCaseProtocol
     
     init(repository: ApiRequest = ApiRequest() ) {
         self.restauranUseCase = RestaurantUseCase()
         self.sortUseCase = SortUseCase()
+        self.imageUseCase = ImageUseCase()
         self.model = HomeModel(restaurants: [])
     }
     
@@ -51,31 +52,29 @@ class HomeViewModel: HomeViewModelProtocol {
                     self.model.restaurants = []
                     self.onError?("Error", error.message)
                 }
-                break
             }
         }
     }
-    
+ 
     func loadImage(indexPath: IndexPath) {
+        
         switch model.restaurants[indexPath.row].imageState {
         case .new:
-            guard let stringURL = model.restaurants[indexPath.row].mainPhoto?.photo_612x344, let url = URL(string: stringURL) else {
+            guard let stringURL = model.restaurants[indexPath.row].mainPhoto?.photo_612x344 else {
                 model.restaurants[indexPath.row].imageState = .failed
                 onUpdatePhoto?(indexPath)
                 return
             }
-            let concurrentPhotoQueue = DispatchQueue(label: "photoQueue", attributes: .concurrent)
             
-            concurrentPhotoQueue.async(flags: .barrier) { [weak self] in
-                guard let self = self else { return }
-                do {
-                    let imageData = try Data(contentsOf: url)
-                    self.model.restaurants[indexPath.row].imageData = imageData
+            imageUseCase.loadImage(url: stringURL) { result in
+                switch result {
+                case .success(let data):
+                    self.model.restaurants[indexPath.row].imageData = data
                     self.model.restaurants[indexPath.row].imageState = .downloaded
                     DispatchQueue.main.async {
                         self.onUpdatePhoto?(indexPath)
                     }
-                } catch {
+                case .failure:
                     self.model.restaurants[indexPath.row].imageState = .failed
                 }
             }

@@ -20,5 +20,9 @@ class RestoUITests: XCTestCase {
         // Mock response filename
         app.launchEnvironment = ["FILENAME":"RestaurantsMock"]
         app.launch()
+        
+        let tableView = app.tables.containing(.table, identifier: "TableViewIdentifier")
+        XCTAssertTrue(tableView.cells.count > 0)
+        XCTAssertTrue(tableView.cells.count == 10)
     }
 }

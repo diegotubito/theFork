@@ -1,8 +1,6 @@
-/// This json is only used for UI Testing. On the application we use an API Call.
-
 {
     "data": [{
-        "name": "Curry Garden III",
+        "name": "Curry Garden Mocked",
         "uuid": "4eg4e2bn-1080-4e1e-8438-6t90ht123456",
         "servesCuisine": "Indian",
         "priceRange": 25,
@@ -40,7 +38,7 @@
             "label": "-40%"
         }
     }, {
-        "name": "Moom Mam",
+        "name": "Moom Mam Mocked",
         "uuid": "4eg4e2bn-1080-4e1e-8438-6t90ht123457",
         "servesCuisine": "Thai",
         "priceRange": 45,
@@ -78,7 +76,7 @@
             "label": "-20%"
         }
     }, {
-        "name": "Les 3 Bornés",
+        "name": "Les 3 Bornés Mocked",
         "uuid": "4eg4e2bn-1080-4e1e-8438-6t90ht123458",
         "servesCuisine": "French",
         "priceRange": 40,
@@ -116,7 +114,7 @@
             "label": "-20%"
         }
     }, {
-        "name": "Swadee",
+        "name": "Swadee Mocked",
         "uuid": "4eg4e2bn-1080-4e1e-8438-6t90ht12319",
         "servesCuisine": "Thai",
         "priceRange": 32,
@@ -154,7 +152,7 @@
             "label": "-30%"
         }
     }, {
-        "name": "Meating Corner",
+        "name": "Meating Corner Mocked",
         "uuid": "4eg4e2bn-1080-4e1e-8438-6t90ht123428",
         "servesCuisine": "American",
         "priceRange": 20,
@@ -192,7 +190,7 @@
             "label": "-30%"
         }
     }, {
-        "name": "Yasmin",
+        "name": "Yasmin Mocked",
         "uuid": "4eg4e2bn-1080-4e1e-8438-6t90ht233456",
         "servesCuisine": "Indian",
         "priceRange": 29,
@@ -230,7 +228,7 @@
             "label": "-30%"
         }
     }, {
-        "name": "Visconti",
+        "name": "Visconti Mocked",
         "uuid": "4eg4e2bn-1080-4e1e-8438-6t90ht973456",
         "servesCuisine": "Italian",
         "priceRange": 48,
@@ -256,7 +254,7 @@
             "label": "-20%"
         }
     }, {
-        "name": "Restaurant New Dehli",
+        "name": "Restaurant New Dehli Mocked",
         "uuid": "4eg4e2bn-1080-4e1e-8438-6t90ht1345456",
         "servesCuisine": "Indian",
         "priceRange": 26,
@@ -294,7 +292,7 @@
             "label": "-30%"
         }
     }, {
-        "name": "Le 27 Gourmand",
+        "name": "Le 27 Gourmand Mocked",
         "uuid": "4eg4e2bn-1080-4e1e-8438-6t90ht123209",
         "servesCuisine": "French",
         "priceRange": 46,
@@ -332,7 +330,7 @@
             "label": "-30%"
         }
     }, {
-        "name": "Le Beef - Steakhouse Viandes Maturées",
+        "name": "Le Beef - Steakhouse Viandes Maturées Mocked",
         "uuid": "4eg4e2bn-1080-4e1e-8438-6t90ht1230936",
         "servesCuisine": "French",
         "priceRange": 41,

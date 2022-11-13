@@ -10,3 +10,4 @@ import Foundation
 struct HomeModel {
     var restaurants: [RestaurantModel]
 }
+
